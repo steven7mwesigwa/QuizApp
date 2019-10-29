@@ -141,5 +141,12 @@
         android:hint="@string/qn_6_option_1_txt_1" />
 
 
+    <Button
+        android:id="@+id/submit_quiz_btn"
+        android:onClick="evaluateQuiz"
+        style="@style/app_btn"
+        android:text="@string/submit_quiz_btn" />
+
+
 </LinearLayout>
 </ScrollView>

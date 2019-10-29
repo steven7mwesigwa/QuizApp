@@ -28,6 +28,13 @@ public class MainActivity extends AppCompatActivity {
         RADIO, CHECKBOX, OPEN_ANSWER
     }
 
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
     private static int finalScore = 6;
 
     //References to questions in the xml file
@@ -63,43 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
     public static void setFinalScore(int finalScore) {
         MainActivity.finalScore = finalScore;
-    }
-
-
-    private List data(TextView question) {
-        // List of question options
-        List<RadioButton> qn1Options = Arrays.asList(qn1Option1, qn1Option2);
-        List<CheckBox> qn2Options = Arrays.asList(qn2Option1, qn2Option2, qn2Option3, qn2Option4);
-        List<RadioButton> qn3Options = Arrays.asList(qn3Option1, qn3Option2, qn3Option3, qn3Option4);
-        List<CheckBox> qn4Options = Arrays.asList(qn4Option1, qn4Option2, qn4Option3, qn4Option4, qn4Option5);
-
-        //List of question answers
-        List<RadioButton> qn1Answers = Arrays.asList(qn1Option2);
-        List<CheckBox> qn2Answers = Arrays.asList(qn2Option1, qn2Option2, qn2Option3, qn2Option4);
-        List<RadioButton> qn3Answers = Arrays.asList(qn3Option1, qn3Option2, qn3Option3, qn3Option4);
-        List<CheckBox> qn4Answers = Arrays.asList(qn4Option1, qn4Option2, qn4Option3, qn4Option4, qn4Option5);
-
-        Map<List<RadioButton>, List<RadioButton>> qn1OptionsQn1Answers = new HashMap<>();
-        Map<List<CheckBox>, List<CheckBox>> qn2OptionsQn2Answers = new HashMap<>();
-        Map<List<RadioButton>, List<RadioButton>> qn3OptionsQn3Answers = new HashMap<>();
-        Map<List<CheckBox>, List<CheckBox>> qn4OptionsQn4Answers = new HashMap<>();
-
-        qn1OptionsQn1Answers.put(qn1Options, qn1Answers);
-        qn2OptionsQn2Answers.put(qn2Options, qn2Answers);
-        qn3OptionsQn3Answers.put(qn3Options, qn3Answers);
-        qn4OptionsQn4Answers.put(qn4Options, qn4Answers);
-
-        Map<OptionsType, Map<List<RadioButton>, List<RadioButton>>> qn1OptionsTypeOptionsQn1Answers = new HashMap<>();
-        Map<OptionsType, Map<List<CheckBox>, List<CheckBox>>> qn2OptionsTypeOptionsQn2Answers = new HashMap<>();
-        Map<OptionsType, Map<List<RadioButton>, List<RadioButton>>> qn3OptionsTypeOptionsQn3Answers = new HashMap<>();
-        Map<OptionsType, Map<List<CheckBox>, List<CheckBox>>> qn4OptionsTypeOptionsQn4Answers = new HashMap<>();
-
-        qn1OptionsTypeOptionsQn1Answers.put(OptionsType.RADIO, qn1OptionsQn1Answers);
-        qn2OptionsTypeOptionsQn2Answers.put(OptionsType.CHECKBOX, qn2OptionsQn2Answers);
-        qn3OptionsTypeOptionsQn3Answers.put(OptionsType.RADIO, qn3OptionsQn3Answers);
-        qn4OptionsTypeOptionsQn4Answers.put(OptionsType.CHECKBOX, qn4OptionsQn4Answers);
-
-        return Arrays.asList(qn1OptionsTypeOptionsQn1Answers, qn2OptionsTypeOptionsQn2Answers, qn3OptionsTypeOptionsQn3Answers, qn4OptionsTypeOptionsQn4Answers);
     }
 
     private void markRadioButtonWrong(RadioButton radioButton) {
@@ -153,14 +123,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void evaluateQuiz(List list, OptionsType optionsType) {
+    private void evaluateQuiz(View view) {
+        // List of question options
+        Set<RadioButton> qn1Options = new HashSet<>(Arrays.asList(qn1Option1, qn1Option2));
+        Set<CheckBox> qn2Options = new HashSet<>(Arrays.asList(qn2Option1, qn2Option2, qn2Option3, qn2Option4));
+        Set<RadioButton> qn3Options = new HashSet<>(Arrays.asList(qn3Option1, qn3Option2, qn3Option3, qn3Option4));
+        Set<CheckBox> qn4Options = new HashSet<>(Arrays.asList(qn4Option1, qn4Option2, qn4Option3, qn4Option4, qn4Option5));
 
-        switch (optionsType) {
-            case RADIO:
-                evaluateRadioBtnQuestion(list);
-        }
+        //List of question answers
+        Set<RadioButton> qn1Answers = new HashSet<>(Arrays.asList(qn1Option2));
+        Set<CheckBox> qn2Answers = new HashSet<>(Arrays.asList(qn2Option1, qn2Option4));
+        Set<RadioButton> qn3Answers = new HashSet<>(Arrays.asList(qn3Option1, qn3Option2, qn3Option3, qn3Option4));
+        Set<CheckBox> qn4Answers = new HashSet<>(Arrays.asList(qn4Option1, qn4Option2, qn4Option3, qn4Option4, qn4Option5));
 
+        evaluateRadioBtnQuestion(qn1Options, qn1Answers);
+        evaluateCheckBoxBtnQuestion(qn2Options, qn2Answers);
+        evaluateRadioBtnQuestion(qn3Options, qn3Answers);
+        evaluateCheckBoxBtnQuestion(qn4Options, qn4Answers);
     }
-
 
 }

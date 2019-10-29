@@ -30,4 +30,5 @@
     <string name="qn_5_option_1_txt_1"> Type here i.e int </string>
     <string name="question_6">What is Math.floor(3.6)?</string>
     <string name="qn_6_option_1_txt_1">Type here i.e 3.6</string>
+    <string name="submit_quiz_btn">Submit Quiz</string>
 </resources>
