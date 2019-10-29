@@ -22,9 +22,6 @@ import java.util.stream.Collectors;
 
 
 public class MainActivity extends AppCompatActivity {
-    private enum OptionsType {
-        RADIO, CHECKBOX, OPEN_ANSWER
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +60,14 @@ public class MainActivity extends AppCompatActivity {
     private void evaluateRadioBtnQuestion(Set<RadioButton> questionOptions, Set<RadioButton> questionCorrectAnswer) {
 
         RadioButton correctAnswer = questionCorrectAnswer.iterator().next();
- 
+
         Optional<RadioButton> studentAnswer = questionOptions.stream().filter(option -> option.isChecked()).findFirst();
 
         if (!studentAnswer.isPresent()) {
             markRadioButtonRight(correctAnswer);
             MainActivity.finalScore--;
         } else {
-            if(studentAnswer.get().equals(correctAnswer)) {
+            if (studentAnswer.get().equals(correctAnswer)) {
                 markRadioButtonRight(correctAnswer);
             } else {
                 markRadioButtonWrong(studentAnswer.get());
@@ -101,30 +98,30 @@ public class MainActivity extends AppCompatActivity {
 
     public void evaluateQuiz(View view) {
         //References to questions in the xml file
-          TextView question1 = findViewById(R.id.question_1);
-         TextView question2 = findViewById(R.id.question_2);
-         TextView question3 = findViewById(R.id.question_3);
-         TextView question4 = findViewById(R.id.question_4);
-         TextView question5 = findViewById(R.id.question_5);
-         TextView question6 = findViewById(R.id.question_6);
+        TextView question1 = findViewById(R.id.question_1);
+        TextView question2 = findViewById(R.id.question_2);
+        TextView question3 = findViewById(R.id.question_3);
+        TextView question4 = findViewById(R.id.question_4);
+        TextView question5 = findViewById(R.id.question_5);
+        TextView question6 = findViewById(R.id.question_6);
         //References to question options in the xml file
-         RadioButton qn1Option1 = findViewById(R.id.qn_1_option_1_txt_1);
-         RadioButton qn1Option2 = findViewById(R.id.qn_1_option_2_txt_2);
-         CheckBox qn2Option1 = findViewById(R.id.qn_2_option_1_txt_1);
-         CheckBox qn2Option2 = findViewById(R.id.qn_2_option_2_txt_2);
-         CheckBox qn2Option3 = findViewById(R.id.qn_2_option_3_txt_3);
-         CheckBox qn2Option4 = findViewById(R.id.qn_2_option_4_txt_4);
-         RadioButton qn3Option1 = findViewById(R.id.qn_3_option_1_txt_1);
-         RadioButton qn3Option2 = findViewById(R.id.qn_3_option_2_txt_2);
-         RadioButton qn3Option3 = findViewById(R.id.qn_3_option_3_txt_3);
-         RadioButton qn3Option4 = findViewById(R.id.qn_3_option_4_txt_4);
-         CheckBox qn4Option1 = findViewById(R.id.qn_4_option_1_txt_1);
-         CheckBox qn4Option2 = findViewById(R.id.qn_4_option_2_txt_2);
-         CheckBox qn4Option3 = findViewById(R.id.qn_4_option_3_txt_3);
-         CheckBox qn4Option4 = findViewById(R.id.qn_4_option_4_txt_4);
-         CheckBox qn4Option5 = findViewById(R.id.qn_4_option_5_txt_5);
-         EditText qn5Option1 = findViewById(R.id.qn_5_option_1_txt_1);
-         EditText qn6Option1 = findViewById(R.id.qn_6_option_1_txt_1);
+        RadioButton qn1Option1 = findViewById(R.id.qn_1_option_1_txt_1);
+        RadioButton qn1Option2 = findViewById(R.id.qn_1_option_2_txt_2);
+        CheckBox qn2Option1 = findViewById(R.id.qn_2_option_1_txt_1);
+        CheckBox qn2Option2 = findViewById(R.id.qn_2_option_2_txt_2);
+        CheckBox qn2Option3 = findViewById(R.id.qn_2_option_3_txt_3);
+        CheckBox qn2Option4 = findViewById(R.id.qn_2_option_4_txt_4);
+        RadioButton qn3Option1 = findViewById(R.id.qn_3_option_1_txt_1);
+        RadioButton qn3Option2 = findViewById(R.id.qn_3_option_2_txt_2);
+        RadioButton qn3Option3 = findViewById(R.id.qn_3_option_3_txt_3);
+        RadioButton qn3Option4 = findViewById(R.id.qn_3_option_4_txt_4);
+        CheckBox qn4Option1 = findViewById(R.id.qn_4_option_1_txt_1);
+        CheckBox qn4Option2 = findViewById(R.id.qn_4_option_2_txt_2);
+        CheckBox qn4Option3 = findViewById(R.id.qn_4_option_3_txt_3);
+        CheckBox qn4Option4 = findViewById(R.id.qn_4_option_4_txt_4);
+        CheckBox qn4Option5 = findViewById(R.id.qn_4_option_5_txt_5);
+        EditText qn5Option1 = findViewById(R.id.qn_5_option_1_txt_1);
+        EditText qn6Option1 = findViewById(R.id.qn_6_option_1_txt_1);
 
 
         // List of question options
@@ -143,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         evaluateCheckBoxBtnQuestion(qn2Options, qn2Answers);
         evaluateRadioBtnQuestion(qn3Options, qn3Answers);
         evaluateCheckBoxBtnQuestion(qn4Options, qn4Answers);
-
+// Display dialog box for final score
         popUpFinalScoreAlertBox();
     }
 
@@ -157,8 +154,6 @@ public class MainActivity extends AppCompatActivity {
 
         // create an alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle("FinalScore");
-//        builder.setMessage("" + MainActivity.getFinalScore());
 
         // set the custom layout
         final View customLayout = getLayoutInflater().inflate(R.layout.alertbox_layout, null);
@@ -170,19 +165,15 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // send data from the AlertDialog to the Activity
-//                EditText editText = customLayout.findViewById(R.id.editText);
-//                sendDialogDataToActivity(editText.getText().toString());
             }
         });
 
         // create and show the alert dialog
         AlertDialog dialog = builder.create();
         dialog.show();
-
+//Reset final score
         MainActivity.setFinalScore(6);
     }
-
 
 
 }
