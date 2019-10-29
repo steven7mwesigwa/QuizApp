@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+    <string name="android_welcome_msg_title">Java Questions Quiz App</string>
+    <string name="welcome_start">START</string>
+    <string name="welcome_image_description">App Welcome Image</string>
+    <string name="question_1">1. What is the size of Java\'s double datatype?</string>
+    <string name="qn_1_option_1_txt_1">32 bit</string>
+    <string name="qn_1_option_2_txt_2">64 bit</string>
+    <string name="question_2">2. Which of the following are Java datatypes (SELECT all that apply)
+        ?</string>
+    <string name="qn_2_option_1_txt_1">int</string>
+    <string name="qn_2_option_2_txt_2">character</string>
+    <string name="qn_2_option_3_txt_3">number</string>
+    <string name="qn_2_option_4_txt_4">Boolean</string>
+    <string name="question_3">3. What is inheritance?</string>
+    <string name="qn_3_option_1_txt_1">Inheritance is a technique to define different methods of same type.</string>
+    <string name="qn_3_option_2_txt_2">It is the process where one object acquires the properties of another.</string>
+    <string name="qn_3_option_3_txt_3">Inheritance is the ability of an object to take on many forms.</string>
+    <string name="qn_3_option_4_txt_4">None of the above.</string>
+    <string name="question_4">4. Which of the following is TRUE for functional interfaces (SELECT all that apply)?</string>
+    <string name="qn_4_option_1_txt_1">They may have zero or more static methods. </string>
+    <string name="qn_4_option_2_txt_2">They are usually marked by @FunctionalInterface
+        annotation.</string>
+    <string name="qn_4_option_3_txt_3">We can create objects of functional interfaces.</string>
+    <string name="qn_4_option_4_txt_4">We can create default methods inside functional interfaces
+        .</string>
+    <string name="qn_4_option_5_txt_5">They contain only one abstract method.</string>
+    <string name="question_5">What will be the return type of a method that
+        doesn\'t return any value?</string>
+    <string name="qn_5_option_1_txt_1"> Type here i.e int </string>
+    <string name="question_6">What is Math.floor(3.6)?</string>
+    <string name="qn_6_option_1_txt_1">Type here i.e 3.6</string>
+</resources>
