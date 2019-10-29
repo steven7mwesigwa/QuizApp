@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.app.AlertDialog;
 
@@ -57,19 +59,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void evaluateEditTextQuestion(EditText questionOption, String correctAnswer ) {
+    private void evaluateEditTextQuestion(RelativeLayout question_wrapper, EditText questionOption, String correctAnswer) {
+        int initialQuizScoreValue = MainActivity.getFinalScore();
         boolean isUserAnswerEmpty = questionOption.getText().toString().trim().length() == 0;
-        if(isUserAnswerEmpty || !questionOption.getText().toString().trim().equals(correctAnswer)) {
+        if (isUserAnswerEmpty || !questionOption.getText().toString().trim().equals(correctAnswer)) {
             MainActivity.finalScore--;
 
         } else {
 
         }
 
+        int finalQuizScoreValue = MainActivity.getFinalScore();
+
+        markQuestion(initialQuizScoreValue, finalQuizScoreValue, question_wrapper);
+
     }
 
-    private void evaluateRadioBtnQuestion(Set<RadioButton> questionOptions, Set<RadioButton> questionCorrectAnswer) {
-
+    private void evaluateRadioBtnQuestion(RelativeLayout question_wrapper, Set<RadioButton> questionOptions, Set<RadioButton> questionCorrectAnswer) {
+        int initialQuizScoreValue = MainActivity.getFinalScore();
         RadioButton correctAnswer = questionCorrectAnswer.iterator().next();
 
         Optional<RadioButton> studentAnswer = questionOptions.stream().filter(option -> option.isChecked()).findFirst();
@@ -87,10 +94,39 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
+        int finalQuizScoreValue = MainActivity.getFinalScore();
+
+        markQuestion(initialQuizScoreValue, finalQuizScoreValue, question_wrapper);
     }
 
-    private void evaluateCheckBoxBtnQuestion(Set<CheckBox> questionOptions, Set<CheckBox> questionCorrectAnswers) {
 
+    private void markQuestionAsWrong(RelativeLayout question_wrapper) {
+        question_wrapper.addView(generateImageView(R.drawable.wrong_answer_img));
+    }
+
+    private void markQuestionAsCorrect(RelativeLayout question_wrapper) {
+        question_wrapper.addView(generateImageView(R.drawable.right_answer_img));
+    }
+
+    private ImageView generateImageView(int imageResource) {
+        ImageView markQuestionImage = new ImageView(this);
+        markQuestionImage.setImageResource(imageResource);
+        markQuestionImage.setVisibility(View.VISIBLE);
+        markQuestionImage.getLayoutParams().height = 5;
+        markQuestionImage.getLayoutParams().width = 5;
+        return markQuestionImage;
+    }
+
+    private void markQuestion(int initialQuizScoreValue, int finalQuizScoreValue, RelativeLayout question_wrapper) {
+        if (initialQuizScoreValue < finalQuizScoreValue) {
+            markQuestionAsWrong(question_wrapper);
+        } else {
+            markQuestionAsCorrect(question_wrapper);
+        }
+    }
+
+    private void evaluateCheckBoxBtnQuestion(RelativeLayout question_wrapper, Set<CheckBox> questionOptions, Set<CheckBox> questionCorrectAnswers) {
+        int initialQuizScoreValue = MainActivity.getFinalScore();
         Set<CheckBox> studentAnswers = questionOptions.stream().filter(option -> option.isChecked()).collect(Collectors.toSet());
 
         if (studentAnswers.isEmpty()) {
@@ -104,10 +140,21 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.finalScore--;
             }
         }
+
+        int finalQuizScoreValue = MainActivity.getFinalScore();
+
+        markQuestion(initialQuizScoreValue, finalQuizScoreValue, question_wrapper);
     }
 
 
     public void evaluateQuiz(View view) {
+        //References to questions in the xml file
+        RelativeLayout question1Wrapper = findViewById(R.id.question_1_wrapper);
+        RelativeLayout question2Wrapper = findViewById(R.id.question_2_wrapper);
+        RelativeLayout question3Wrapper = findViewById(R.id.question_3_wrapper);
+        RelativeLayout question4Wrapper = findViewById(R.id.question_4_wrapper);
+        RelativeLayout question5Wrapper = findViewById(R.id.question_5_wrapper);
+        RelativeLayout question6Wrapper = findViewById(R.id.question_6_wrapper);
         //References to question options in the xml file
         RadioButton qn1Option1 = findViewById(R.id.qn_1_option_1_txt_1);
         RadioButton qn1Option2 = findViewById(R.id.qn_1_option_2_txt_2);
@@ -142,12 +189,12 @@ public class MainActivity extends AppCompatActivity {
         String qn5Answer = "void";
         String qn6Answer = "void";
 
-        evaluateRadioBtnQuestion(qn1Options, qn1Answers);
-        evaluateCheckBoxBtnQuestion(qn2Options, qn2Answers);
-        evaluateRadioBtnQuestion(qn3Options, qn3Answers);
-        evaluateCheckBoxBtnQuestion(qn4Options, qn4Answers);
-        evaluateEditTextQuestion(qn5Option1, qn5Answer);
-        evaluateEditTextQuestion(qn6Option1, qn6Answer);
+        evaluateRadioBtnQuestion(question1Wrapper, qn1Options, qn1Answers);
+        evaluateCheckBoxBtnQuestion(question2Wrapper, qn2Options, qn2Answers);
+        evaluateRadioBtnQuestion(question3Wrapper, qn3Options, qn3Answers);
+        evaluateCheckBoxBtnQuestion(question4Wrapper, qn4Options, qn4Answers);
+        evaluateEditTextQuestion(question5Wrapper, qn5Option1, qn5Answer);
+        evaluateEditTextQuestion(question6Wrapper, qn6Option1, qn6Answer);
 // Display dialog box for final score
         popUpFinalScoreAlertBox();
     }
