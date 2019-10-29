@@ -72,17 +72,17 @@
     </style>
 
     <!-- Final Score Message Styles   -->
-    <style name="qz_final_score_msg"  parent="@android:style/TextAppearance.Large">
+    <style name="qz_final_score_msg">
         <item name="android:textColor">#28a745</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">60sp</item>
         <item name="android:padding">25dip</item>
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
     <!-- Final Score Title Styles   -->
-    <style name="qz_final_score_title"  parent="@android:style/TextAppearance.Large">
+    <style name="qz_final_score_title">
         <item name="android:textColor">#000</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">30sp</item>
         <item name="android:padding">25dip</item>
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
