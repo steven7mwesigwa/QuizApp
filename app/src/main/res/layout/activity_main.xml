@@ -140,12 +140,17 @@
         style="@style/qn_edittext_btn"
         android:hint="@string/qn_6_option_1_txt_1" />
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <Button
         android:id="@+id/submit_quiz_btn"
         android:onClick="evaluateQuiz"
-        style="@style/app_btn"
+        style="@style/qz_submit_btn"
         android:text="@string/submit_quiz_btn" />
+
+</RelativeLayout>
 
 
 </LinearLayout>

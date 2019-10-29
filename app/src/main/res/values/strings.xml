@@ -25,10 +25,10 @@
     <string name="qn_4_option_4_txt_4">We can create default methods inside functional interfaces
         .</string>
     <string name="qn_4_option_5_txt_5">They contain only one abstract method.</string>
-    <string name="question_5">What will be the return type of a method that
+    <string name="question_5">5. What will be the return type of a method that
         doesn\'t return any value?</string>
     <string name="qn_5_option_1_txt_1"> Type here i.e int </string>
-    <string name="question_6">What is Math.floor(3.6)?</string>
+    <string name="question_6">6. What is Math.floor(3.6)?</string>
     <string name="qn_6_option_1_txt_1">Type here i.e 3.6</string>
     <string name="submit_quiz_btn">Submit Quiz</string>
 </resources>
