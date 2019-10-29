@@ -141,42 +141,34 @@
             style="@style/qn_edittext_btn"
             android:hint="@string/qn_6_option_1_txt_1" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/submit_quiz_btn"
-                style="@style/qz_submit_btn"
-                android:onClick="evaluateQuiz"
-                android:text="@string/submit_quiz_btn" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
                 android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="false"
-                android:layout_weight="0.5"
-                android:text="Left Button"
-                />
+                <Button
+                    android:text="@string/submit_quiz_btn"
+                    style="@style/qz_submit_btn"
+                    android:layout_width="0dp"
+                    android:onClick="evaluateQuiz"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".40" />
+                <Space
+                    android:layout_width="1dp"
+                    android:layout_height="35dp"/>
+                <Button
+                    android:text="@string/restart_quiz_btn"
+                    style="@style/qz_submit_btn"
+                    android:onClick="loadWelcomeActivity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".40" />
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Right Button"
-                />
             </LinearLayout>
-
-        </RelativeLayout>
-
 
     </LinearLayout>
 </ScrollView>

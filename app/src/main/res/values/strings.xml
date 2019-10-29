@@ -30,5 +30,8 @@
     <string name="qn_5_option_1_txt_1"> Type here i.e int </string>
     <string name="question_6">6. What is Math.floor(3.6)?</string>
     <string name="qn_6_option_1_txt_1">Type here i.e 3.6</string>
-    <string name="submit_quiz_btn">Submit Quiz</string>
+    <string name="submit_quiz_btn">Submit</string>
+    <string name="restart_quiz_btn">Restart</string>
+    <string name="qz_final_score_msg">0</string>
+    <string name="qz_final_score_title">Final Score</string>
 </resources>

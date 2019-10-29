@@ -1,11 +1,15 @@
 package com.stevenmwesigwa.quizapp;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.app.AlertDialog;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -139,6 +143,44 @@ public class MainActivity extends AppCompatActivity {
         evaluateCheckBoxBtnQuestion(qn2Options, qn2Answers);
         evaluateRadioBtnQuestion(qn3Options, qn3Answers);
         evaluateCheckBoxBtnQuestion(qn4Options, qn4Answers);
-    } 
+
+        popUpFinalScoreAlertBox();
+    }
+
+    public void loadWelcomeActivity(View view) {
+        MainActivity.setFinalScore(6);
+        Intent intent = new Intent(this, WelcomeActivity.class);
+        startActivity(intent);
+    }
+
+    private void popUpFinalScoreAlertBox() {
+
+        // create an alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle("FinalScore");
+//        builder.setMessage("" + MainActivity.getFinalScore());
+
+        // set the custom layout
+        final View customLayout = getLayoutInflater().inflate(R.layout.alertbox_layout, null);
+        builder.setView(customLayout);
+        TextView quizFinalScore = customLayout.findViewById(R.id.qz_final_score_msg);
+        quizFinalScore.setText("" + MainActivity.getFinalScore());
+
+        // add a button
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // send data from the AlertDialog to the Activity
+//                EditText editText = customLayout.findViewById(R.id.editText);
+//                sendDialogDataToActivity(editText.getText().toString());
+            }
+        });
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+
 
 }
