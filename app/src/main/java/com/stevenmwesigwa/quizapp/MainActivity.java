@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void evaluateQuiz(View view) {
+    public void evaluateQuiz(View view) {
         // List of question options
         Set<RadioButton> qn1Options = new HashSet<>(Arrays.asList(qn1Option1, qn1Option2));
         Set<CheckBox> qn2Options = new HashSet<>(Arrays.asList(qn2Option1, qn2Option2, qn2Option3, qn2Option4));
