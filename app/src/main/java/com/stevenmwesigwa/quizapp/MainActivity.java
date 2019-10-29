@@ -57,6 +57,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    private void evaluateEditTextQuestion(EditText questionOption, String correctAnswer ) {
+        boolean isUserAnswerEmpty = questionOption.getText().toString().trim().length() == 0;
+        if(isUserAnswerEmpty || !questionOption.getText().toString().trim().equals(correctAnswer)) {
+            MainActivity.finalScore--;
+
+        } else {
+
+        }
+
+    }
+
     private void evaluateRadioBtnQuestion(Set<RadioButton> questionOptions, Set<RadioButton> questionCorrectAnswer) {
 
         RadioButton correctAnswer = questionCorrectAnswer.iterator().next();
@@ -97,13 +108,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void evaluateQuiz(View view) {
-        //References to questions in the xml file
-        TextView question1 = findViewById(R.id.question_1);
-        TextView question2 = findViewById(R.id.question_2);
-        TextView question3 = findViewById(R.id.question_3);
-        TextView question4 = findViewById(R.id.question_4);
-        TextView question5 = findViewById(R.id.question_5);
-        TextView question6 = findViewById(R.id.question_6);
         //References to question options in the xml file
         RadioButton qn1Option1 = findViewById(R.id.qn_1_option_1_txt_1);
         RadioButton qn1Option2 = findViewById(R.id.qn_1_option_2_txt_2);
@@ -135,11 +139,15 @@ public class MainActivity extends AppCompatActivity {
         Set<CheckBox> qn2Answers = new HashSet<>(Arrays.asList(qn2Option1, qn2Option4));
         Set<RadioButton> qn3Answers = new HashSet<>(Arrays.asList(qn3Option2));
         Set<CheckBox> qn4Answers = new HashSet<>(Arrays.asList(qn4Option1, qn4Option2, qn4Option4, qn4Option5));
+        String qn5Answer = "void";
+        String qn6Answer = "void";
 
         evaluateRadioBtnQuestion(qn1Options, qn1Answers);
         evaluateCheckBoxBtnQuestion(qn2Options, qn2Answers);
         evaluateRadioBtnQuestion(qn3Options, qn3Answers);
         evaluateCheckBoxBtnQuestion(qn4Options, qn4Answers);
+        evaluateEditTextQuestion(qn5Option1, qn5Answer);
+        evaluateEditTextQuestion(qn6Option1, qn6Answer);
 // Display dialog box for final score
         popUpFinalScoreAlertBox();
     }
