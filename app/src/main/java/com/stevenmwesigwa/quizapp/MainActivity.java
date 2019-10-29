@@ -179,6 +179,8 @@ public class MainActivity extends AppCompatActivity {
         // create and show the alert dialog
         AlertDialog dialog = builder.create();
         dialog.show();
+
+        MainActivity.setFinalScore(6);
     }
 
 
