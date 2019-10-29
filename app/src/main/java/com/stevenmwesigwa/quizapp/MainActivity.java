@@ -101,19 +101,21 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void markQuestionAsWrong(RelativeLayout question_wrapper) {
-        question_wrapper.addView(generateImageView(R.drawable.wrong_answer_img));
+        ImageView markQuestionImage = new ImageView(this);
+        question_wrapper.addView(generateImageView(markQuestionImage,R.drawable.wrong_answer_img));
     }
 
     private void markQuestionAsCorrect(RelativeLayout question_wrapper) {
-        question_wrapper.addView(generateImageView(R.drawable.right_answer_img));
+        ImageView markQuestionImage = new ImageView(this);
+        question_wrapper.addView(generateImageView(markQuestionImage,R.drawable.right_answer_img));
     }
 
-    private ImageView generateImageView(int imageResource) {
-        ImageView markQuestionImage = new ImageView(this);
+    private ImageView generateImageView(ImageView markQuestionImage,int imageResource) {
+//        ImageView markQuestionImage = new ImageView(this);
         markQuestionImage.setImageResource(imageResource);
         markQuestionImage.setVisibility(View.VISIBLE);
-        markQuestionImage.getLayoutParams().height = 5;
-        markQuestionImage.getLayoutParams().width = 5;
+//        markQuestionImage.getLayoutParams().height = 5;
+//        markQuestionImage.getLayoutParams().width = 5;
         return markQuestionImage;
     }
 
