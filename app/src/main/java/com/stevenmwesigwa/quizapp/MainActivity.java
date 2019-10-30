@@ -1,5 +1,6 @@
 package com.stevenmwesigwa.quizapp;
 
+import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void evaluateEditTextQuestion(RelativeLayout question_wrapper, EditText questionOption, String correctAnswer) {
+    private void evaluateEditTextQuestion(LinearLayout question_wrapper, EditText questionOption, String correctAnswer) {
         int initialQuizScoreValue = MainActivity.getFinalScore();
         boolean isUserAnswerEmpty = questionOption.getText().toString().trim().length() == 0;
         if (isUserAnswerEmpty || !questionOption.getText().toString().trim().equals(correctAnswer)) {
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void evaluateRadioBtnQuestion(RelativeLayout question_wrapper, Set<RadioButton> questionOptions, Set<RadioButton> questionCorrectAnswer) {
+    private void evaluateRadioBtnQuestion(LinearLayout question_wrapper, Set<RadioButton> questionOptions, Set<RadioButton> questionCorrectAnswer) {
         int initialQuizScoreValue = MainActivity.getFinalScore();
         RadioButton correctAnswer = questionCorrectAnswer.iterator().next();
 
@@ -100,11 +102,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void markQuestionAsWrong(RelativeLayout question_wrapper) {
+    private void markQuestionAsWrong(LinearLayout question_wrapper) {
         question_wrapper.addView(generateImageView(R.drawable.wrong_answer_img));
     }
 
-    private void markQuestionAsCorrect(RelativeLayout question_wrapper) {
+    private void markQuestionAsCorrect(LinearLayout question_wrapper) {
         question_wrapper.addView(generateImageView(R.drawable.right_answer_img));
     }
 
@@ -112,17 +114,19 @@ public class MainActivity extends AppCompatActivity {
         ImageView markQuestionImage = new ImageView(this);
         markQuestionImage.setImageResource(imageResource);
         markQuestionImage.setVisibility(View.VISIBLE);
-        RelativeLayout.LayoutParams params =
-                new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
-                        RelativeLayout.LayoutParams.WRAP_CONTENT);
-        params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
-        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
-        params.setMargins(0,0,20,0);
+        LinearLayout.LayoutParams params =
+                new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
+//        params.addRule(LinearLayout., RelativeLayout.TRUE);
+//        params.addRule(LinearLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+//        params.s;
+        // Changes the height and width to the specified *pixels*
+//        params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+//        params.width = 0;
         markQuestionImage.setLayoutParams(params);
         return markQuestionImage;
     }
 
-    private void markQuestion(int initialQuizScoreValue, int finalQuizScoreValue, RelativeLayout question_wrapper) {
+    private void markQuestion(int initialQuizScoreValue, int finalQuizScoreValue, LinearLayout question_wrapper) {
         if (initialQuizScoreValue < finalQuizScoreValue) {
             markQuestionAsWrong(question_wrapper);
         } else {
@@ -130,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void evaluateCheckBoxBtnQuestion(RelativeLayout question_wrapper, Set<CheckBox> questionOptions, Set<CheckBox> questionCorrectAnswers) {
+    private void evaluateCheckBoxBtnQuestion(LinearLayout question_wrapper, Set<CheckBox> questionOptions, Set<CheckBox> questionCorrectAnswers) {
         int initialQuizScoreValue = MainActivity.getFinalScore();
         Set<CheckBox> studentAnswers = questionOptions.stream().filter(option -> option.isChecked()).collect(Collectors.toSet());
 
@@ -154,12 +158,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void evaluateQuiz(View view) {
         //References to questions in the xml file
-        RelativeLayout question1Wrapper = findViewById(R.id.question_1_wrapper);
-        RelativeLayout question2Wrapper = findViewById(R.id.question_2_wrapper);
-        RelativeLayout question3Wrapper = findViewById(R.id.question_3_wrapper);
-        RelativeLayout question4Wrapper = findViewById(R.id.question_4_wrapper);
-        RelativeLayout question5Wrapper = findViewById(R.id.question_5_wrapper);
-        RelativeLayout question6Wrapper = findViewById(R.id.question_6_wrapper);
+        LinearLayout question1Wrapper = findViewById(R.id.question_1_wrapper);
+        LinearLayout question2Wrapper = findViewById(R.id.question_2_wrapper);
+        LinearLayout question3Wrapper = findViewById(R.id.question_3_wrapper);
+        LinearLayout question4Wrapper = findViewById(R.id.question_4_wrapper);
+        LinearLayout question5Wrapper = findViewById(R.id.question_5_wrapper);
+        LinearLayout question6Wrapper = findViewById(R.id.question_6_wrapper);
         //References to question options in the xml file
         RadioButton qn1Option1 = findViewById(R.id.qn_1_option_1_txt_1);
         RadioButton qn1Option2 = findViewById(R.id.qn_1_option_2_txt_2);

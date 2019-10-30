@@ -86,4 +86,21 @@
         <item name="android:padding">25dip</item>
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
+
+    <!-- Linear Layout Styles for horizontal alignment of 2 views   -->
+    <style name="qz_horizontal_align_2_elements">
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginRight">4dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!-- Add vertical white Space Styles   -->
+    <style name="add_vertical_white_space">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">35dp</item>
+    </style>
 </resources>
