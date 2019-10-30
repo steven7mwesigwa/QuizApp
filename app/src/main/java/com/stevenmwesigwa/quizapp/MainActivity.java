@@ -116,12 +116,6 @@ public class MainActivity extends AppCompatActivity {
         markQuestionImage.setVisibility(View.VISIBLE);
         LinearLayout.LayoutParams params =
                 new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
-//        params.addRule(LinearLayout., RelativeLayout.TRUE);
-//        params.addRule(LinearLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
-//        params.s;
-        // Changes the height and width to the specified *pixels*
-//        params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
-//        params.width = 0;
         markQuestionImage.setLayoutParams(params);
         return markQuestionImage;
     }
@@ -136,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void evaluateCheckBoxBtnQuestion(LinearLayout question_wrapper, Set<CheckBox> questionOptions, Set<CheckBox> questionCorrectAnswers) {
         int initialQuizScoreValue = MainActivity.getFinalScore();
+
         Set<CheckBox> studentAnswers = questionOptions.stream().filter(option -> option.isChecked()).collect(Collectors.toSet());
 
         if (studentAnswers.isEmpty()) {
