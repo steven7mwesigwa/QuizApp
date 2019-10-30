@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -35,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
 
     private static int finalScore = 6;
 
+    private enum AnswerImageStatus {
+        CORRECT, WRONG
+    }
+
     public static int getFinalScore() {
         return finalScore;
     }
@@ -63,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void evaluateEditTextQuestion(LinearLayout question_wrapper, EditText questionOption, String correctAnswer) {
         int initialQuizScoreValue = MainActivity.getFinalScore();
+
+        Log.d("ADebugTag", "ValueEdit1: " + Float.toString(initialQuizScoreValue));
         boolean isUserAnswerEmpty = questionOption.getText().toString().trim().length() == 0;
         if (isUserAnswerEmpty || !questionOption.getText().toString().trim().equals(correctAnswer)) {
             MainActivity.finalScore--;
@@ -72,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         int finalQuizScoreValue = MainActivity.getFinalScore();
+        Log.d("ADebugTag", "ValueEdit2: " + Float.toString(finalQuizScoreValue));
 
         markQuestion(initialQuizScoreValue, finalQuizScoreValue, question_wrapper);
 
@@ -79,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void evaluateRadioBtnQuestion(LinearLayout question_wrapper, Set<RadioButton> questionOptions, Set<RadioButton> questionCorrectAnswer) {
         int initialQuizScoreValue = MainActivity.getFinalScore();
+        Log.d("ADebugTag", "ValueRadio1: " + Float.toString(initialQuizScoreValue));
         RadioButton correctAnswer = questionCorrectAnswer.iterator().next();
 
         Optional<RadioButton> studentAnswer = questionOptions.stream().filter(option -> option.isChecked()).findFirst();
@@ -97,23 +106,36 @@ public class MainActivity extends AppCompatActivity {
 
         }
         int finalQuizScoreValue = MainActivity.getFinalScore();
+        Log.d("ADebugTag", "ValueRadio2: " + Float.toString(finalQuizScoreValue));
 
         markQuestion(initialQuizScoreValue, finalQuizScoreValue, question_wrapper);
     }
 
 
     private void markQuestionAsWrong(LinearLayout question_wrapper) {
-        question_wrapper.addView(generateImageView(R.drawable.wrong_answer_img));
+        ImageView markQuestionImage = generateImageView(R.drawable.wrong_answer_img, AnswerImageStatus.WRONG);
+        question_wrapper.addView(markQuestionImage);
     }
 
     private void markQuestionAsCorrect(LinearLayout question_wrapper) {
-        question_wrapper.addView(generateImageView(R.drawable.right_answer_img));
+        ImageView markQuestionImage = generateImageView(R.drawable.right_answer_img, AnswerImageStatus.CORRECT);
+        question_wrapper.addView(markQuestionImage);
     }
 
-    private ImageView generateImageView(int imageResource) {
+    private ImageView generateImageView(int imageResource, AnswerImageStatus answerImageStatus) {
         ImageView markQuestionImage = new ImageView(this);
         markQuestionImage.setImageResource(imageResource);
         markQuestionImage.setVisibility(View.VISIBLE);
+        switch (answerImageStatus) {
+            case CORRECT:
+                markQuestionImage.setId(R.id.right_answer_img_id);
+                break;
+            case WRONG:
+                markQuestionImage.setId(R.id.wrong_answer_img_id);
+                break;
+            default:
+                markQuestionImage.setId(View.generateViewId());
+        }
         LinearLayout.LayoutParams params =
                 new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
         markQuestionImage.setLayoutParams(params);
@@ -121,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void markQuestion(int initialQuizScoreValue, int finalQuizScoreValue, LinearLayout question_wrapper) {
-        if (initialQuizScoreValue < finalQuizScoreValue) {
+        if (initialQuizScoreValue > finalQuizScoreValue) {
             markQuestionAsWrong(question_wrapper);
         } else {
             markQuestionAsCorrect(question_wrapper);
@@ -140,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
             Set<CheckBox> wrongAnswers = studentAnswers.stream().filter(option -> !questionCorrectAnswers.contains(option)).collect(Collectors.toSet());
             wrongAnswers.forEach(option -> markCheckBoxButtonWrong(option));
             questionCorrectAnswers.forEach(option -> markCheckBoxButtonRight(option));
-            if (!wrongAnswers.isEmpty()) {
+            if (!wrongAnswers.isEmpty() || !studentAnswers.equals(questionCorrectAnswers)) {
                 MainActivity.finalScore--;
             }
         }
@@ -152,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void evaluateQuiz(View view) {
-        //References to questions in the xml file
+        //References to question Wrappers in the xml file
         LinearLayout question1Wrapper = findViewById(R.id.question_1_wrapper);
         LinearLayout question2Wrapper = findViewById(R.id.question_2_wrapper);
         LinearLayout question3Wrapper = findViewById(R.id.question_3_wrapper);
@@ -191,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
         Set<RadioButton> qn3Answers = new HashSet<>(Arrays.asList(qn3Option2));
         Set<CheckBox> qn4Answers = new HashSet<>(Arrays.asList(qn4Option1, qn4Option2, qn4Option4, qn4Option5));
         String qn5Answer = "void";
-        String qn6Answer = "void";
+        String qn6Answer = "3.0";
 
         evaluateRadioBtnQuestion(question1Wrapper, qn1Options, qn1Answers);
         evaluateCheckBoxBtnQuestion(question2Wrapper, qn2Options, qn2Answers);
