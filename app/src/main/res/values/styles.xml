@@ -110,4 +110,16 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">vertical</item>
     </style>
+
+    <!-- EditText Correct Answer Styles   -->
+    <style name="qz_edittext_correct_answer_display"  parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@color/colorBlueSuccess</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+
 </resources>

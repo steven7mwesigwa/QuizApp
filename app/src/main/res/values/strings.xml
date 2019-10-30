@@ -34,4 +34,5 @@
     <string name="restart_quiz_btn">Restart</string>
     <string name="qz_final_score_msg">0</string>
     <string name="qz_final_score_title">Final Score</string>
+    <string name="qz_correct_answr_edittext">&#160;&#160;&#160;Correct Answer:&#160;&#160;</string>
 </resources>

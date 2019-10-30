@@ -62,19 +62,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void evaluateEditTextQuestion(LinearLayout question_wrapper, EditText questionOption, String correctAnswer) {
+    private void evaluateEditTextQuestion(LinearLayout question_wrapper, EditText questionOption, String correctAnswer, LinearLayout editTextOptionWrapper) {
+
         int initialQuizScoreValue = MainActivity.getFinalScore();
         boolean isUserAnswerEmpty = questionOption.getText().toString().trim().length() == 0;
         if (isUserAnswerEmpty || !questionOption.getText().toString().trim().equals(correctAnswer)) {
             MainActivity.finalScore--;
-
-        } else {
 
         }
 
         int finalQuizScoreValue = MainActivity.getFinalScore();
 
         markQuestion(initialQuizScoreValue, finalQuizScoreValue, question_wrapper);
+
+        //Show / Display Correct Answer
+        TextView textView = new TextView(this);
+        textView.setText(getResources().getString(R.string.qz_correct_answr_edittext) + correctAnswer);
+        textView.setTextAppearance(this, R.style.qz_edittext_correct_answer_display);
+        removeLayoutSecondChild(editTextOptionWrapper);
+        editTextOptionWrapper.addView(textView);
 
     }
 
@@ -158,6 +164,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        Set<CheckBox> uncheckedWrongOptions = questionOptions.stream().filter(option -> !option.isChecked() && !questionCorrectAnswers.contains(option) ).collect(Collectors.toSet());
+        uncheckedWrongOptions.forEach(option -> option.setTextColor(ContextCompat.getColor(this, R.color.colorBlack)));
+
         int finalQuizScoreValue = MainActivity.getFinalScore();
 
         markQuestion(initialQuizScoreValue, finalQuizScoreValue, question_wrapper);
@@ -172,6 +181,11 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout question4Wrapper = findViewById(R.id.question_4_wrapper);
         LinearLayout question5Wrapper = findViewById(R.id.question_5_wrapper);
         LinearLayout question6Wrapper = findViewById(R.id.question_6_wrapper);
+
+        //References to EditText Option Wrappers in the xml file
+        LinearLayout editTextQn5Option1Wrapper = findViewById(R.id.qz_edittext_qn_5_option_1_wrapper);
+        LinearLayout editTextQn6Option1Wrapper = findViewById(R.id.qz_edittext_qn_6_option_1_wrapper);
+
         //References to question options in the xml file
         RadioButton qn1Option1 = findViewById(R.id.qn_1_option_1_txt_1);
         RadioButton qn1Option2 = findViewById(R.id.qn_1_option_2_txt_2);
@@ -210,8 +224,8 @@ public class MainActivity extends AppCompatActivity {
         evaluateCheckBoxBtnQuestion(question2Wrapper, qn2Options, qn2Answers);
         evaluateRadioBtnQuestion(question3Wrapper, qn3Options, qn3Answers);
         evaluateCheckBoxBtnQuestion(question4Wrapper, qn4Options, qn4Answers);
-        evaluateEditTextQuestion(question5Wrapper, qn5Option1, qn5Answer);
-        evaluateEditTextQuestion(question6Wrapper, qn6Option1, qn6Answer);
+        evaluateEditTextQuestion(question5Wrapper, qn5Option1, qn5Answer, editTextQn5Option1Wrapper);
+        evaluateEditTextQuestion(question6Wrapper, qn6Option1, qn6Answer, editTextQn6Option1Wrapper);
 // Display dialog box for final score
         popUpFinalScoreAlertBox();
     }

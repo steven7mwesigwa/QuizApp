@@ -12,18 +12,17 @@
 
 
         <LinearLayout
-            style="@style/qz_horizontal_align_2_elements"
-            android:id="@+id/question_1_wrapper">
+            android:id="@+id/question_1_wrapper"
+            style="@style/qz_horizontal_align_2_elements">
 
             <TextView
                 android:id="@+id/question_1"
+                style="@style/quiz_question"
                 android:layout_width="0dp"
                 android:layout_weight="9"
-                style="@style/quiz_question"
                 android:text="@string/question_1" />
 
-            <Space
-                style="@style/add_vertical_white_space" />
+            <Space style="@style/add_vertical_white_space" />
         </LinearLayout>
 
         <RadioGroup
@@ -44,19 +43,18 @@
         </RadioGroup>
 
         <LinearLayout
-        style="@style/qz_horizontal_align_2_elements"
-            android:id="@+id/question_2_wrapper">
+            android:id="@+id/question_2_wrapper"
+            style="@style/qz_horizontal_align_2_elements">
 
             <TextView
                 android:id="@+id/question_2"
+                style="@style/quiz_question"
                 android:layout_width="0dp"
                 android:layout_weight="9"
-                style="@style/quiz_question"
                 android:text="@string/question_2" />
 
-            <Space
-                style="@style/add_vertical_white_space" />
-    </LinearLayout>
+            <Space style="@style/add_vertical_white_space" />
+        </LinearLayout>
 
         <CheckBox
             android:id="@+id/qn_2_option_1_txt_1"
@@ -79,8 +77,8 @@
             android:text="@string/qn_2_option_4_txt_4" />
 
         <LinearLayout
-            style="@style/qz_horizontal_align_2_elements"
-            android:id="@+id/question_3_wrapper">
+            android:id="@+id/question_3_wrapper"
+            style="@style/qz_horizontal_align_2_elements">
 
             <TextView
                 android:id="@+id/question_3"
@@ -89,8 +87,7 @@
                 android:layout_weight="9"
                 android:text="@string/question_3" />
 
-            <Space
-                style="@style/add_vertical_white_space" />
+            <Space style="@style/add_vertical_white_space" />
         </LinearLayout>
 
         <RadioGroup
@@ -122,8 +119,8 @@
 
 
         <LinearLayout
-            style="@style/qz_horizontal_align_2_elements"
-            android:id="@+id/question_4_wrapper">
+            android:id="@+id/question_4_wrapper"
+            style="@style/qz_horizontal_align_2_elements">
 
             <TextView
                 android:id="@+id/question_4"
@@ -132,8 +129,7 @@
                 android:layout_weight="9"
                 android:text="@string/question_4" />
 
-            <Space
-                style="@style/add_vertical_white_space" />
+            <Space style="@style/add_vertical_white_space" />
         </LinearLayout>
 
         <CheckBox
@@ -162,8 +158,8 @@
             android:text="@string/qn_4_option_5_txt_5" />
 
         <LinearLayout
-            style="@style/qz_horizontal_align_2_elements"
-            android:id="@+id/question_5_wrapper" >
+            android:id="@+id/question_5_wrapper"
+            style="@style/qz_horizontal_align_2_elements">
 
             <TextView
                 android:id="@+id/question_5"
@@ -172,22 +168,22 @@
                 android:layout_weight="9"
                 android:text="@string/question_5" />
 
-            <Space
-                style="@style/add_vertical_white_space" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/qz_edittext_qn_5_option_1_wrapper"
-        style="@style/qz_edittext_wrapper">
-        <EditText
-            android:id="@+id/qn_5_option_1_txt_1"
-            style="@style/qn_edittext_btn"
-            android:hint="@string/qn_5_option_1_txt_1" />
-    </LinearLayout>
+            <Space style="@style/add_vertical_white_space" />
+        </LinearLayout>
 
         <LinearLayout
-            style="@style/qz_horizontal_align_2_elements"
-            android:id="@+id/question_6_wrapper">
+            android:id="@+id/qz_edittext_qn_5_option_1_wrapper"
+            style="@style/qz_edittext_wrapper">
+
+            <EditText
+                android:id="@+id/qn_5_option_1_txt_1"
+                style="@style/qn_edittext_btn"
+                android:hint="@string/qn_5_option_1_txt_1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/question_6_wrapper"
+            style="@style/qz_horizontal_align_2_elements">
 
             <TextView
                 android:id="@+id/question_6"
@@ -197,21 +193,20 @@
                 android:text="@string/question_6" />
 
 
-            <Space
-                style="@style/add_vertical_white_space" />
+            <Space style="@style/add_vertical_white_space" />
         </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/qz_edittext_qn_6_option_1_wrapper"
-        style="@style/qz_edittext_wrapper">
-        <EditText
-            android:id="@+id/qn_6_option_1_txt_1"
-            style="@style/qn_edittext_btn"
-            android:hint="@string/qn_6_option_1_txt_1" />
-    </LinearLayout>
-
         <LinearLayout
-            style="@style/qz_horizontal_align_2_elements">
+            android:id="@+id/qz_edittext_qn_6_option_1_wrapper"
+            style="@style/qz_edittext_wrapper">
+
+            <EditText
+                android:id="@+id/qn_6_option_1_txt_1"
+                style="@style/qn_edittext_btn"
+                android:hint="@string/qn_6_option_1_txt_1" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/qz_horizontal_align_2_elements">
 
             <Button
                 style="@style/qz_submit_btn"
@@ -222,8 +217,7 @@
                 android:onClick="evaluateQuiz"
                 android:text="@string/submit_quiz_btn" />
 
-            <Space
-                style="@style/add_vertical_white_space" />
+            <Space style="@style/add_vertical_white_space" />
 
             <Button
                 style="@style/qz_submit_btn"
