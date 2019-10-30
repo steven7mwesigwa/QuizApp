@@ -176,10 +176,14 @@
                 style="@style/add_vertical_white_space" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/qz_edittext_qn_5_option_1_wrapper"
+        style="@style/qz_edittext_wrapper">
         <EditText
             android:id="@+id/qn_5_option_1_txt_1"
             style="@style/qn_edittext_btn"
             android:hint="@string/qn_5_option_1_txt_1" />
+    </LinearLayout>
 
         <LinearLayout
             style="@style/qz_horizontal_align_2_elements"
@@ -197,10 +201,14 @@
                 style="@style/add_vertical_white_space" />
         </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/qz_edittext_qn_6_option_1_wrapper"
+        style="@style/qz_edittext_wrapper">
         <EditText
             android:id="@+id/qn_6_option_1_txt_1"
             style="@style/qn_edittext_btn"
             android:hint="@string/qn_6_option_1_txt_1" />
+    </LinearLayout>
 
         <LinearLayout
             style="@style/qz_horizontal_align_2_elements">

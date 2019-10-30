@@ -36,10 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static int finalScore = 6;
 
-    private enum AnswerImageStatus {
-        CORRECT, WRONG
-    }
-
     public static int getFinalScore() {
         return finalScore;
     }
@@ -68,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void evaluateEditTextQuestion(LinearLayout question_wrapper, EditText questionOption, String correctAnswer) {
         int initialQuizScoreValue = MainActivity.getFinalScore();
-
-        Log.d("ADebugTag", "ValueEdit1: " + Float.toString(initialQuizScoreValue));
         boolean isUserAnswerEmpty = questionOption.getText().toString().trim().length() == 0;
         if (isUserAnswerEmpty || !questionOption.getText().toString().trim().equals(correctAnswer)) {
             MainActivity.finalScore--;
@@ -79,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         int finalQuizScoreValue = MainActivity.getFinalScore();
-        Log.d("ADebugTag", "ValueEdit2: " + Float.toString(finalQuizScoreValue));
 
         markQuestion(initialQuizScoreValue, finalQuizScoreValue, question_wrapper);
 
@@ -87,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void evaluateRadioBtnQuestion(LinearLayout question_wrapper, Set<RadioButton> questionOptions, Set<RadioButton> questionCorrectAnswer) {
         int initialQuizScoreValue = MainActivity.getFinalScore();
-        Log.d("ADebugTag", "ValueRadio1: " + Float.toString(initialQuizScoreValue));
         RadioButton correctAnswer = questionCorrectAnswer.iterator().next();
 
         Optional<RadioButton> studentAnswer = questionOptions.stream().filter(option -> option.isChecked()).findFirst();
@@ -106,36 +98,35 @@ public class MainActivity extends AppCompatActivity {
 
         }
         int finalQuizScoreValue = MainActivity.getFinalScore();
-        Log.d("ADebugTag", "ValueRadio2: " + Float.toString(finalQuizScoreValue));
 
         markQuestion(initialQuizScoreValue, finalQuizScoreValue, question_wrapper);
     }
 
 
+    private void removeLayoutSecondChild(LinearLayout question_wrapper) {
+        int getQuestionWrapperChildCount = question_wrapper.getChildCount();
+        if (getQuestionWrapperChildCount > 1) {
+            question_wrapper.removeViewAt(1);
+        }
+    }
+
     private void markQuestionAsWrong(LinearLayout question_wrapper) {
-        ImageView markQuestionImage = generateImageView(R.drawable.wrong_answer_img, AnswerImageStatus.WRONG);
+        removeLayoutSecondChild(question_wrapper);
+        ImageView markQuestionImage = generateImageView(R.drawable.wrong_answer_img);
         question_wrapper.addView(markQuestionImage);
     }
 
     private void markQuestionAsCorrect(LinearLayout question_wrapper) {
-        ImageView markQuestionImage = generateImageView(R.drawable.right_answer_img, AnswerImageStatus.CORRECT);
+        removeLayoutSecondChild(question_wrapper);
+        ImageView markQuestionImage = generateImageView(R.drawable.right_answer_img);
         question_wrapper.addView(markQuestionImage);
     }
 
-    private ImageView generateImageView(int imageResource, AnswerImageStatus answerImageStatus) {
+    private ImageView generateImageView(int imageResource) {
         ImageView markQuestionImage = new ImageView(this);
         markQuestionImage.setImageResource(imageResource);
         markQuestionImage.setVisibility(View.VISIBLE);
-        switch (answerImageStatus) {
-            case CORRECT:
-                markQuestionImage.setId(R.id.right_answer_img_id);
-                break;
-            case WRONG:
-                markQuestionImage.setId(R.id.wrong_answer_img_id);
-                break;
-            default:
-                markQuestionImage.setId(View.generateViewId());
-        }
+        markQuestionImage.setId(View.generateViewId());
         LinearLayout.LayoutParams params =
                 new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
         markQuestionImage.setLayoutParams(params);
