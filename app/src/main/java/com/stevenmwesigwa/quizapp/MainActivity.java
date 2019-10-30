@@ -101,21 +101,24 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void markQuestionAsWrong(RelativeLayout question_wrapper) {
-        ImageView markQuestionImage = new ImageView(this);
-        question_wrapper.addView(generateImageView(markQuestionImage,R.drawable.wrong_answer_img));
+        question_wrapper.addView(generateImageView(R.drawable.wrong_answer_img));
     }
 
     private void markQuestionAsCorrect(RelativeLayout question_wrapper) {
-        ImageView markQuestionImage = new ImageView(this);
-        question_wrapper.addView(generateImageView(markQuestionImage,R.drawable.right_answer_img));
+        question_wrapper.addView(generateImageView(R.drawable.right_answer_img));
     }
 
-    private ImageView generateImageView(ImageView markQuestionImage,int imageResource) {
-//        ImageView markQuestionImage = new ImageView(this);
+    private ImageView generateImageView(int imageResource) {
+        ImageView markQuestionImage = new ImageView(this);
         markQuestionImage.setImageResource(imageResource);
         markQuestionImage.setVisibility(View.VISIBLE);
-//        markQuestionImage.getLayoutParams().height = 5;
-//        markQuestionImage.getLayoutParams().width = 5;
+        RelativeLayout.LayoutParams params =
+                new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+        params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
+        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+        params.setMargins(0,0,20,0);
+        markQuestionImage.setLayoutParams(params);
         return markQuestionImage;
     }
 
