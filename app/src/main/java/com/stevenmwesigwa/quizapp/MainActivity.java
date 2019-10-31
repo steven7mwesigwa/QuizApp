@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         int initialQuizScoreValue = MainActivity.getFinalScore();
         boolean isUserAnswerEmpty = questionOption.getText().toString().trim().length() == 0;
-        if (isUserAnswerEmpty || !questionOption.getText().toString().trim().equals(correctAnswer)) {
+        if (isUserAnswerEmpty || !questionOption.getText().toString().trim().equalsIgnoreCase(correctAnswer)) {
             MainActivity.finalScore--;
 
         }
